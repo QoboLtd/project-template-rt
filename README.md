@@ -37,7 +37,7 @@ Configuration
 
 Most things should just work.  When something doesn't work, a helpful
 error message is usually given.  Certain things can (and should) be 
-adjusted using the ```.env``` configuration file in theh root folder
+adjusted using the ```.env``` configuration file in the root folder
 of the project.  For convenience, ```.env.example``` file is provided
 with sensible defaults.
 
