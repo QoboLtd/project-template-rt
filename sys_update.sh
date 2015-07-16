@@ -31,19 +31,19 @@ then
 	yum install epel-release
 fi
 
-if [ -z $(which puppet) ]
+if [ -z $(which puppet 2>/dev/null) ]
 then
 	echo puppet not found.  Installing...
 	yum install puppet
 fi
 
-if [ -z $(which gem) ]
+if [ -z $(which gem 2>/dev/null) ]
 then
 	echo gem not found.  Installing...
 	yum install gem
 fi
 
-if [ -z $(which librarian-puppet) ]
+if [ -z $(which librarian-puppet 2>/dev/null) ]
 then
 	echo librarian-puppet not found.  Installing...
 	gem install librarian-puppet
