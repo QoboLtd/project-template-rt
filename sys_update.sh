@@ -25,10 +25,10 @@ source .env
 
 # Setup all dependencies
 
-if [ -z $(rpm -q epel-release) ]
+if [ -z $(rpm -qa | grep epel-release) ]
 then
 	echo Installing EPEL yum repository
-	rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+	yum install epel-release
 fi
 
 if [ -z $(which puppet) ]
