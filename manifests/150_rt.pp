@@ -270,8 +270,8 @@ Set( \$DatabaseName, '${::rt_db_name}');
 Set( \$DatabaseUser, '${::rt_db_user}');
 Set( \$DatabasePassword, '${::rt_db_pass}');
 
-Set( \%GnuPG, Enable => 0);
-Set( \%SMIME, Enable => 0);
+Set( %GnuPG, Enable => 0);
+Set( %SMIME, Enable => 0);
 
 Set( \$RestrictReferrer, 0);
 1;
