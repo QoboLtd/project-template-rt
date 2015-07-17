@@ -34,6 +34,11 @@ node default {
 		# Things for running RT
 		'nginx',
 		'spawn-fcgi',
+		# HTML formatters
+		'w3m',
+		'elinks',
+		'html2text',
+		'lynx',
 	]
 
 	package { $packageLove:
@@ -172,6 +177,7 @@ node default {
 				'GD::Graph',
 				'GD::Text',
 				'GnuPG::Interface',
+				'HTML::FormatExternal',
 				'HTML::Mason',
 				'HTML::Mason::PSGIHandler',
 				'HTML::Quoted',
