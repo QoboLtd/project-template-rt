@@ -1,10 +1,5 @@
 node default {
 
-	# Don't go too far for the hostname
-	host { $fqdn:
-		ip => '127.0.0.1',
-	}
-
 	group { $::rt_group:
 		ensure => "present",
 	}
@@ -21,39 +16,18 @@ node default {
 		require => [ Group[$::rt_group], Package["nginx"] ],
 	}
 
-	class { 'selinux':
-		mode => 'disabled',
-	}
-
 	$packageHate = [
 		#'selinux-policy',
 		#'selinux-policy-targeted',
-		'postfix',
 	]
 
 	$packageLove = [
-		# Making life easy
-		'git',
-		'ack',
-		'htop',
-		'screen',
-		'mc',
-		'vim-enhanced',
-		'ctags',
-		'telnet',
-		'links',
-		'bash-completion.noarch',
 		# Things for building RT
-		'bzip2',
-		'gzip',
-		'tar',
 		'gnupg2',
 		'make',
 		'autoconf',
 		'gcc',
-		'less',
 		'patch',
-		'wget',
 		'perl-CPAN',
 		'perl-local-lib',
 		'perl-GD',
@@ -65,8 +39,6 @@ node default {
 		# Things for running RT
 		'nginx',
 		'spawn-fcgi',
-
-		'exim',
 	]
 
 	package { $packageLove:
@@ -160,73 +132,6 @@ node default {
 
 		notify => Service['spawn-fcgi'],
 		require => [ Package['nginx'], Package['spawn-fcgi'], File["/home/${::rt_user}"] ],
-	}
-
-	service { 'exim':
-		ensure => 'running',
-		enable => true,
-		require => Package['exim'],
-	}
-
-
-	# We always need MySQL client
-	#class { '::mysql::client': }
-	include '::mysql::client'
-
-	# We always need bindings (dev for CPAN, perl otherwise)
-	class { '::mysql::bindings':
-		perl_enable => true,
-	}
-
-	case $::rt_setup_local_db {
-		'yes', '1', 'true': {
-			#class { '::mysql::server': }
-			include '::mysql::server'
-		}
-		default: {
-			notice("Skipping local DB setup due to .env settings")
-		}
-	}
-
-	case $::rt_setup_firewall {
-		'yes', '1', 'true': {
-
-			# Remove all firewall rules, managed by anything other than puppet
-			#resources { "firewall":
-			#	purge => true
-			#}
-
-			firewall { '000 accept all ICMP requests':
-				proto => 'icmp',
-				action => 'accept',
-			}
-			firewall { '005 accept all on lo':
-				proto => 'all',
-				iniface => 'lo',
-				action => 'accept',
-			}
-			firewall { '010 accept SSH':
-				proto => 'tcp',
-				port => 22,
-				action => 'accept',
-			}
-			firewall { '020 accept SMTP':
-				proto => 'tcp',
-				port => [25, 465, 587],
-				action => 'accept',
-			}
-			firewall { '030 accept HTTP and HTTPS':
-				proto => 'tcp',
-				port => [80, 443],
-				action => 'accept',
-			}
-			firewall { '999 drop everything else':
-				action => 'drop',
-			}
-		}
-		default: {
-			notice("Skipping firewall setup due to .env settings")
-		}
 	}
 
 	# Get RT from GitHub
