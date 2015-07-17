@@ -164,6 +164,7 @@ node default {
 			}
 
 			$rt_dependencies = [
+				'GD::Graph',
 				'CGI::Cookie',
 				'CGI::PSGI',
 				'Convert::Color',
@@ -173,6 +174,7 @@ node default {
 				'Date::Extract',
 				'DateTime::Format::Natural',
 				'DBIx::SearchBuilder',
+				'Encode',
 				'Email::Address::List',
 				'GnuPG::Interface',
 				'HTML::FormatExternal',
@@ -187,6 +189,7 @@ node default {
 				'MIME::Entity',
 				'Net::SSL',
 				'PerlIO::eol',
+				'Plack::Handler::Starlet',
 				'Starlet::Server',
 				'Regexp::Common::net::CIDR',
 				'Role::Basic',
