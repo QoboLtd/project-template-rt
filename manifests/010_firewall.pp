@@ -2,7 +2,7 @@ node default {
 	case $::rt_setup_firewall {
 		'yes', '1', 'true': {
 
-			 Remove all firewall rules, managed by anything other than puppet
+			# Remove all firewall rules, managed by anything other than puppet
 			resources { "firewall":
 				purge => true
 			}
