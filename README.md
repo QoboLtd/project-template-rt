@@ -27,9 +27,7 @@ Assumptions
 -----------
 
 * The setup and configuration is executed by user root.
-* Server's hostname is the FQDN on which the RT will run.
 * Server has access to the Internet, for git, puppet, perl and yum dependencies.
-* Server will run all necessary parts locally - web, database, and mail software.
 * No other critical software runs on the server.
 
 Configuration
@@ -47,7 +45,6 @@ Some of the things that can be adjusted are:
 * Installation location for RT 
 * Whether or not to install CPAN modules for RT dependencies
 * Whether or not tweak the network firewall
-* Whether or not to install local database
 * Whether or not to initialize the database with some data
 * spawn-fcgi location
 

@@ -2,14 +2,6 @@
 
 # Check minimum requirements
 
-if [ "$(hostname)" == "localhost.localdomain" ]
-then
-	echo
-	echo "Please set hostname to something more appropriate"
-	echo
-	exit 1
-fi
-
 if [[ $EUID -ne 0 ]]
 then
 	echo
