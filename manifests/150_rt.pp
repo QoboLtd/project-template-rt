@@ -128,7 +128,7 @@ node default {
 		group => root,
 		owner => root,
 		# For some reason $::rt_web_user returns 'foobar' here
-		content => "OPTIONS=\" -P /var/run/spawn-fcgi.pid -u nginx -g $::rt_web_group -a $::rt_fastcgi_host -p $::rt_fastcgi_port -- ${::rt_prefix}/sbin/rt-server.fcgi\"",
+		content => "OPTIONS=\" -P /var/run/spawn-fcgi.pid -u nginx -g $::rt_web_group -a $::rt_fastcgi_host -p $::rt_fastcgi_port -- ${::rt_current}/sbin/rt-server.fcgi\"",
 
 		notify => Service['spawn-fcgi'],
 		require => [ Package['nginx'], Package['spawn-fcgi'], File["/home/${::rt_user}"] ],
@@ -300,6 +300,11 @@ Set( \$DateDayBeforeMonth, 1);
 		",
 		notify => Service['spawn-fcgi'],
 		require => Exec["make-install"],
+	}
+
+	file { $::rt_current:
+		ensure => 'link',
+		target => $::rt_prefix,
 	}
 
 	case $::rt_setup_initdb {
