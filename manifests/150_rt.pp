@@ -47,7 +47,7 @@ node default {
 	service { 'nginx':
 		ensure => 'running',
 		enable => true,
-		subscribe => File[ "/etc/nginx/conf.d/${::fqdn}.conf"],
+		subscribe => File[ "/etc/nginx/conf.d/${::rt_host}.conf"],
 		require => Package['nginx'],
 	}
 
@@ -61,7 +61,7 @@ node default {
 		require => [ Package['nginx'] ],
 	}
 
-	file { "/etc/nginx/conf.d/${::fqdn}.conf":
+	file { "/etc/nginx/conf.d/${::rt_host}.conf":
 		ensure => present,
 
 		group => root,
@@ -69,8 +69,8 @@ node default {
 		content => "
 			server {
 				listen 80;
-				server_name ${::fqdn};
-				access_log  /var/log/nginx/${::fqdn}-access.log;
+				server_name ${::rt_host};
+				access_log  /var/log/nginx/${::rt_host}-access.log;
 
 				location / {
 					fastcgi_param  QUERY_STRING       \$query_string;
@@ -262,8 +262,18 @@ node default {
 	file { 'RT_SiteConfig.pm':
 		path => "$::rt_prefix/etc/RT_SiteConfig.pm",
 		content => "
-Set( \$rtname, '$::fqdn');
-Set(@ReferrerWhitelist, qw($::fqdn:443  $::fqdn:80 127.0.0.1:80));
+Set( \$rtname, '${::rt_host}');
+
+Set( \$DatabaseHost, '${::rt_db_host}');
+Set( \$DatabasePort, '${::rt_db_port}');
+Set( \$DatabaseName, '${::rt_db_name}');
+Set( \$DatabaseUser, '${::rt_db_user}');
+Set( \$DatabasePassword, '${::rt_db_pass}');
+
+Set( \%GnuPG, Enable => 0);
+Set( \%SMIME, Enable => 0);
+
+Set( \$RestrictReferrer, 0);
 1;
 		",
 		notify => Service['spawn-fcgi'],
