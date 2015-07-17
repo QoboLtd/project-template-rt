@@ -277,6 +277,7 @@ Set( \$RestrictReferrer, 0);
 1;
 		",
 		notify => Service['spawn-fcgi'],
+		require => Exec["make-install"],
 	}
 
 	case $::rt_setup_initdb {
