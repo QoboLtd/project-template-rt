@@ -10,7 +10,7 @@ node default {
 
 	# If rt_db_host is local, setup the database server also
 	case $::rt_db_host {
-		'localhost', 'localhost.localdomain', '127.0.0.1', $fqdn: {
+		'', 'localhost', 'localhost.localdomain', '127.0.0.1', $fqdn: {
 			include '::mysql::server'
 		}
 		default: {
