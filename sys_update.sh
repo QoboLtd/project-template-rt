@@ -89,6 +89,13 @@ echo
 echo Installing puppet modules
 echo
 librarian-puppet install
+if [ "$?" -ne 0 ]
+then
+	echo
+	echo Failed to to install puppet modules ... Aborting.
+	echo
+	exit 1
+fi
 
 for MANIFEST in $(ls -1 manifests/*.pp)
 do
