@@ -23,7 +23,22 @@ source .env
 
 # Setup all dependencies
 
-if [ -z $(rpm -qa | grep epel-release) ]
+if [ -z $(which git 2>/dev/null) ]
+then
+	echo
+	echo Installing git
+	echo
+	yum install git
+	if [ "$?" -ne 0 ]
+	then
+		echo
+		echo Failed to to install git ... Aborting.
+		echo
+		exit 1
+	fi
+fi
+
+if [ -z $(rpm -qa | grep ^epel-release) ]
 then
 	echo
 	echo Installing EPEL yum repository
