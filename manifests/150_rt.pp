@@ -189,7 +189,6 @@ node default {
 				'MIME::Entity',
 				'Net::SSL',
 				'PerlIO::eol',
-				'Plack::Handler::Starlet',
 				'Starlet',
 				'Regexp::Common::net::CIDR',
 				'Role::Basic',
