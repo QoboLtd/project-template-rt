@@ -100,7 +100,9 @@ librarian-puppet install
 
 for MANIFEST in $(ls -1 manifests/*.pp)
 do
+	echo
 	echo Applying puppet manifest $MANIFEST
+	echo
 	puppet apply --modulepath=modules/ "$MANIFEST"
 	if [ "$?" -ne 0 ]
 	then
