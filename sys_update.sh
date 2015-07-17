@@ -58,6 +58,11 @@ for MANIFEST in $(ls -1 manifests/*.pp)
 do
 	echo Applying puppet manifest $MANIFEST
 	puppet apply --modulepath=modules/ "$MANIFEST"
+	if [ "$?" -ne 0 ]
+	then
+		echo Failed to apply manifest $MANIFEST ... Aborting.
+		exit 1
+	fi
 done
 
 echo All done.
