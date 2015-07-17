@@ -1,10 +1,5 @@
 node default {
 
-	# Don't go too far for the hostname
-	host { $fqdn:
-		ip => '127.0.0.1',
-	}
-
 	group { $::rt_group:
 		ensure => "present",
 	}
@@ -21,39 +16,18 @@ node default {
 		require => [ Group[$::rt_group], Package["nginx"] ],
 	}
 
-	class { 'selinux':
-		mode => 'disabled',
-	}
-
 	$packageHate = [
 		#'selinux-policy',
 		#'selinux-policy-targeted',
-		'postfix',
 	]
 
 	$packageLove = [
-		# Making life easy
-		'git',
-		'ack',
-		'htop',
-		'screen',
-		'mc',
-		'vim-enhanced',
-		'ctags',
-		'telnet',
-		'links',
-		'bash-completion.noarch',
 		# Things for building RT
-		'bzip2',
-		'gzip',
-		'tar',
 		'gnupg2',
 		'make',
 		'autoconf',
 		'gcc',
-		'less',
 		'patch',
-		'wget',
 		'perl-CPAN',
 		'perl-local-lib',
 		'perl-GD',
@@ -65,8 +39,6 @@ node default {
 		# Things for running RT
 		'nginx',
 		'spawn-fcgi',
-
-		'exim',
 	]
 
 	package { $packageLove:
@@ -161,13 +133,6 @@ node default {
 		notify => Service['spawn-fcgi'],
 		require => [ Package['nginx'], Package['spawn-fcgi'], File["/home/${::rt_user}"] ],
 	}
-
-	service { 'exim':
-		ensure => 'running',
-		enable => true,
-		require => Package['exim'],
-	}
-
 
 	# We always need MySQL client
 	#class { '::mysql::client': }
