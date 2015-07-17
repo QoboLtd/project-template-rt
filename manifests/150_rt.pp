@@ -187,6 +187,7 @@ node default {
 				'Mail::Header',
 				'Mail::Mailer',
 				'MIME::Entity',
+				'Module::Util',
 				'Net::SSL',
 				'PerlIO::eol',
 				'Plack::Handler::Starlet',
