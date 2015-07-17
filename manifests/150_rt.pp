@@ -201,7 +201,6 @@ node default {
 				local_lib => $::rt_local_cpan,
 				require => [ 
 					Package["gcc"], 
-					Package["perl-local-lib"], 
 					File[$::rt_local_cpan],
 				],
 			}
