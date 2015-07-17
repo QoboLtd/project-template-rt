@@ -57,7 +57,7 @@ librarian-puppet install
 for MANIFEST in $(ls -1 manifests/*.pp)
 do
 	echo Applying puppet manifest $MANIFEST
-	puppet apply --modulepath=modules/ "manifests/$MANIFEST"
+	puppet apply --modulepath=modules/ "$MANIFEST"
 done
 
 echo All done.
