@@ -202,7 +202,7 @@ node default {
 			]
 
 			cpan { $rt_dependencies: 
-				ensure => latest,
+				ensure => present,
 				local_lib => $::rt_local_cpan,
 				require => [ 
 					Package["gcc"], 
