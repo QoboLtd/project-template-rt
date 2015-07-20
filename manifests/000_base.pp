@@ -1,7 +1,7 @@
 node default {
 
 	# Don't go too far for the hostname
-	host { $fqdn:
+	host { $::rt_host:
 		ip => '127.0.0.1',
 	}
 

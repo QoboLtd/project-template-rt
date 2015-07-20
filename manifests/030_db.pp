@@ -8,12 +8,13 @@ node default {
 		perl_enable => true,
 	}
 
-	case $::rt_setup_local_db {
-		'yes', '1', 'true': {
+	# If rt_db_host is local, setup the database server also
+	case $::rt_db_host {
+		'', 'localhost', 'localhost.localdomain', '127.0.0.1', $fqdn: {
 			include '::mysql::server'
 		}
 		default: {
-			notice("Skipping local DB setup due to .env settings")
+			notice("Skipping DB server setup due to non local db_host [${::rt_db_host}]")
 		}
 	}
 

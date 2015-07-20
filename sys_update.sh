@@ -2,14 +2,6 @@
 
 # Check minimum requirements
 
-if [ "$(hostname)" == "localhost.localdomain" ]
-then
-	echo
-	echo "Please set hostname to something more appropriate"
-	echo
-	exit 1
-fi
-
 if [[ $EUID -ne 0 ]]
 then
 	echo
@@ -31,7 +23,22 @@ source .env
 
 # Setup all dependencies
 
-if [ -z $(rpm -qa | grep epel-release) ]
+if [ -z $(which git 2>/dev/null) ]
+then
+	echo
+	echo Installing git
+	echo
+	yum install git
+	if [ "$?" -ne 0 ]
+	then
+		echo
+		echo Failed to to install git ... Aborting.
+		echo
+		exit 1
+	fi
+fi
+
+if [ -z $(rpm -qa | grep ^epel-release) ]
 then
 	echo
 	echo Installing EPEL yum repository
@@ -97,6 +104,13 @@ echo
 echo Installing puppet modules
 echo
 librarian-puppet install
+if [ "$?" -ne 0 ]
+then
+	echo
+	echo Failed to to install puppet modules ... Aborting.
+	echo
+	exit 1
+fi
 
 for MANIFEST in $(ls -1 manifests/*.pp)
 do
