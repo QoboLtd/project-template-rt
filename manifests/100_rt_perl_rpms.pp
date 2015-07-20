@@ -47,6 +47,7 @@ node default {
 		'perl-HTML-Scrubber',
 		'perl-IPC-Run',
 		'perl-IPC-Run3',
+		'perl-IPC-Signal',
 		'perl-JSON',
 		'perl-List-MoreUtils',
 		'perl-Locale-Maketext',
