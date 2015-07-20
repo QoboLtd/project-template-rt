@@ -23,7 +23,6 @@ node default {
 
 	$packageLove = [
 		# Things for building RT
-		'gnupg2',
 		'make',
 		'autoconf',
 		'gcc',
@@ -176,7 +175,6 @@ node default {
 				'DBIx::SearchBuilder',
 				'Encode',
 				'Email::Address::List',
-				'GnuPG::Interface',
 				'HTML::FormatExternal',
 				'HTML::Mason',
 				'HTML::Mason::PSGIHandler',
