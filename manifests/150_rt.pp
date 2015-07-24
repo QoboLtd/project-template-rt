@@ -230,7 +230,7 @@ node default {
 	# ./configure
 	exec { 'configure':
 		command => "configure $::rt_configure_options",
-		environment => ["PERL=/usr/bin/perl -I${::rt_local_cpan}/lib/perl5"],
+		environment => ["PERL=/usr/bin/perl -I${::rt_prefix}/lib -I${::rt_local_cpan}/lib/perl5"],
 
 		path => [ "$::rt_local_repo/", "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
 		group => $::rt_group,
@@ -262,6 +262,15 @@ node default {
 
 		require => Exec["make-testdeps"],
 		notify => Service['spawn-fcgi'],
+	}
+
+	$rt_extensions = [
+		'RT::Extension::Gravatar',
+	]
+	cpan { $rt_extensions:
+		ensure => latest,
+		local_lib => $::rt_prefix,
+		require => Exec['make-install'],
 	}
 
 	file { 'RT_SiteConfig.pm':
@@ -296,6 +305,10 @@ Set( \$HideResolveActionsWithDependencies, 1);
 Set( \$UseTransactionBatch, 1);
 Set( \$DateDayBeforeMonth, 1);
 #Set( \$RestrictReferrer, 0);
+
+# Plugins
+Plugin('RT::Extension::Gravatar');
+
 1;
 		",
 		notify => Service['spawn-fcgi'],
