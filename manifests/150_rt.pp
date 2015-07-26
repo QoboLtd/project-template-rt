@@ -272,6 +272,7 @@ node default {
 		'RT::Extension::CustomFieldsOnUpdate',
 		'RT::Extension::ExternalStorage',
 		'RT::Extension::Gravatar',
+		'RT::Extension::JSGantt',
 		'RTx::Calendar',
 	]
 	cpan { $rt_extensions:
@@ -319,6 +320,7 @@ Plugin('RT::Extension::ActivityReports');
 Plugin('RT::Extension::AddAttachmentsFromTransactions');
 Plugin('RT::Extension::CustomFieldsOnUpdate');
 Plugin('RT::Extension::Gravatar');
+Plugin('RT::Extension::JSGantt');
 Plugin('RTx::Calendar');
 
 # Plugin settings
