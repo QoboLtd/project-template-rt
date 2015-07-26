@@ -266,6 +266,7 @@ node default {
 
 	$rt_extensions = [
 		'RT::Action::AssignUnownedToActor',
+		'RT::Extension::ActivityReports',
 		'RT::Extension::Gravatar',
 	]
 	cpan { $rt_extensions:
@@ -309,6 +310,7 @@ Set( \$DateDayBeforeMonth, 1);
 
 # Plugins
 Plugin('RT::Action::AssignUnownedToActor');
+Plugin('RT::Extension::ActivityReports');
 Plugin('RT::Extension::Gravatar');
 
 1;
