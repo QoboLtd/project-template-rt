@@ -270,6 +270,7 @@ node default {
 		'RT::Extension::ActivityReports',
 		'RT::Extension::AddAttachmentsFromTransactions',
 		'RT::Extension::Gravatar',
+		'RTx::Calendar',
 	]
 	cpan { $rt_extensions:
 		ensure => latest,
@@ -315,6 +316,10 @@ Plugin('RT::Action::AssignUnownedToActor');
 Plugin('RT::Extension::ActivityReports');
 Plugin('RT::Extension::AddAttachmentsFromTransactions');
 Plugin('RT::Extension::Gravatar');
+Plugin('RTx::Calendar');
+
+# Plugin settings
+Set(\$HomepageComponents, [qw(QuickCreate Quicksearch MyCalendar MyAdminQueues MySupportQueues MyReminders RefreshHomepage)]);
 
 1;
 		",
