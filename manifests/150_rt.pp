@@ -280,6 +280,7 @@ node default {
 		ensure => latest,
 		local_lib => $::rt_prefix,
 		require => Exec['make-install'],
+		notify => Service['spawn-fcgi'],
 	}
 
 	file { 'RT_SiteConfig.pm':
