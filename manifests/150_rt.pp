@@ -270,6 +270,7 @@ node default {
 		'RT::Extension::ActivityReports',
 		'RT::Extension::AddAttachmentsFromTransactions',
 		'RT::Extension::CustomFieldsOnUpdate',
+		'RT::Extension::ExternalStorage',
 		'RT::Extension::Gravatar',
 		'RTx::Calendar',
 	]
