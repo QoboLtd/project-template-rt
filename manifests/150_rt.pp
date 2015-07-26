@@ -265,6 +265,7 @@ node default {
 	}
 
 	$rt_extensions = [
+		'RT::Action::AssignUnownedToActor',
 		'RT::Extension::Gravatar',
 	]
 	cpan { $rt_extensions:
@@ -307,6 +308,7 @@ Set( \$DateDayBeforeMonth, 1);
 #Set( \$RestrictReferrer, 0);
 
 # Plugins
+Plugin('RT::Action::AssignUnownedToActor');
 Plugin('RT::Extension::Gravatar');
 
 1;
