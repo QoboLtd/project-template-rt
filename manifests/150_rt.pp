@@ -273,6 +273,7 @@ node default {
 		'RT::Extension::ExternalStorage',
 		'RT::Extension::Gravatar',
 		'RT::Extension::JSGantt',
+		'RT::Extension::PriorityAsString',
 		'RTx::Calendar',
 	]
 	cpan { $rt_extensions:
