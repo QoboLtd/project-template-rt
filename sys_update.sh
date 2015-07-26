@@ -112,6 +112,10 @@ then
 	exit 1
 fi
 
+# Use current value
+OLD_RTHOME=$RTHOME
+export RTHOME="$FACTER_rt_prefix"
+
 for MANIFEST in $(ls -1 manifests/*.pp)
 do
 	echo
@@ -126,6 +130,9 @@ do
 		exit 1
 	fi
 done
+
+# Restore old value
+export RTHOME=$OLD_RTHOME
 
 echo
 echo All done.

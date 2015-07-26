@@ -230,7 +230,7 @@ node default {
 	# ./configure
 	exec { 'configure':
 		command => "configure $::rt_configure_options",
-		environment => ["PERL=/usr/bin/perl -I${::rt_local_cpan}/lib/perl5"],
+		environment => ["PERL=/usr/bin/perl -I${::rt_prefix}/lib -I${::rt_local_cpan}/lib/perl5"],
 
 		path => [ "$::rt_local_repo/", "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
 		group => $::rt_group,
@@ -262,6 +262,24 @@ node default {
 
 		require => Exec["make-testdeps"],
 		notify => Service['spawn-fcgi'],
+	}
+
+	$rt_extensions = [
+		'RT::Action::AssignUnownedToActor',
+		'RT::Authen::ExternalAuth',
+		'RT::Extension::ActivityReports',
+		'RT::Extension::AddAttachmentsFromTransactions',
+		'RT::Extension::CustomFieldsOnUpdate',
+		'RT::Extension::ExternalStorage',
+		'RT::Extension::Gravatar',
+		'RT::Extension::JSGantt',
+		'RT::Extension::PriorityAsString',
+		'RTx::Calendar',
+	]
+	cpan { $rt_extensions:
+		ensure => latest,
+		local_lib => $::rt_prefix,
+		require => Exec['make-install'],
 	}
 
 	file { 'RT_SiteConfig.pm':
@@ -296,6 +314,19 @@ Set( \$HideResolveActionsWithDependencies, 1);
 Set( \$UseTransactionBatch, 1);
 Set( \$DateDayBeforeMonth, 1);
 #Set( \$RestrictReferrer, 0);
+
+# Plugins
+Plugin('RT::Action::AssignUnownedToActor');
+Plugin('RT::Extension::ActivityReports');
+Plugin('RT::Extension::AddAttachmentsFromTransactions');
+Plugin('RT::Extension::CustomFieldsOnUpdate');
+Plugin('RT::Extension::Gravatar');
+Plugin('RT::Extension::JSGantt');
+Plugin('RTx::Calendar');
+
+# Plugin settings
+Set(\$HomepageComponents, [qw(QuickCreate Quicksearch MyCalendar MyAdminQueues MySupportQueues MyReminders RefreshHomepage)]);
+
 1;
 		",
 		notify => Service['spawn-fcgi'],
