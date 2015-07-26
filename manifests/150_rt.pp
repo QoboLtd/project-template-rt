@@ -269,6 +269,7 @@ node default {
 		'RT::Authen::ExternalAuth',
 		'RT::Extension::ActivityReports',
 		'RT::Extension::AddAttachmentsFromTransactions',
+		'RT::Extension::CustomFieldsOnUpdate',
 		'RT::Extension::Gravatar',
 		'RTx::Calendar',
 	]
@@ -315,6 +316,7 @@ Set( \$DateDayBeforeMonth, 1);
 Plugin('RT::Action::AssignUnownedToActor');
 Plugin('RT::Extension::ActivityReports');
 Plugin('RT::Extension::AddAttachmentsFromTransactions');
+Plugin('RT::Extension::CustomFieldsOnUpdate');
 Plugin('RT::Extension::Gravatar');
 Plugin('RTx::Calendar');
 
