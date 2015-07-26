@@ -266,6 +266,7 @@ node default {
 
 	$rt_extensions = [
 		'RT::Action::AssignUnownedToActor',
+		'RT::Authen::ExternalAuth',
 		'RT::Extension::ActivityReports',
 		'RT::Extension::AddAttachmentsFromTransactions',
 		'RT::Extension::Gravatar',
