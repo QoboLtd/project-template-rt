@@ -274,6 +274,7 @@ node default {
 		'RT::Extension::Gravatar',
 		'RT::Extension::JSGantt',
 		'RT::Extension::PriorityAsString',
+		'RT::Extension::SummaryByUser',
 		'RTx::Calendar',
 	]
 	cpan { $rt_extensions:
@@ -322,10 +323,21 @@ Plugin('RT::Extension::AddAttachmentsFromTransactions');
 Plugin('RT::Extension::CustomFieldsOnUpdate');
 Plugin('RT::Extension::Gravatar');
 Plugin('RT::Extension::JSGantt');
+Plugin('RT::Extension::SummaryByUser');
 Plugin('RTx::Calendar');
 
 # Plugin settings
-Set(\$HomepageComponents, [qw(QuickCreate Quicksearch MyCalendar MyAdminQueues MySupportQueues MyReminders RefreshHomepage)]);
+Set(\$HomepageComponents, [qw(
+	QuickCreate 
+	Quicksearch 
+	MyCalendar 
+	OwnerSummary
+	RequestorSummary
+	MyAdminQueues 
+	MySupportQueues 
+	MyReminders 
+	RefreshHomepage
+)]);
 
 1;
 		",
