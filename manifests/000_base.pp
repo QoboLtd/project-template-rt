@@ -12,15 +12,6 @@ node default {
 		ip => '127.0.0.1',
 	}
 
-	class { 'selinux':
-		mode => 'disabled',
-	}
-
-	$packageHate = [
-		#'selinux-policy',
-		#'selinux-policy-targeted',
-	]
-
 	$packageLove = [
 		# Making life easy
 		'git',
@@ -44,8 +35,5 @@ node default {
 		ensure => 'latest',
 	}
 
-	package { $packageHate:
-		ensure => 'purged',
-	}
 }
 

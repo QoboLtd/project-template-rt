@@ -23,11 +23,6 @@ node default {
 		require => [ Group[$::rt_group], Package["nginx"] ],
 	}
 
-	$packageHate = [
-		#'selinux-policy',
-		#'selinux-policy-targeted',
-	]
-
 	$packageLove = [
 		# Things for building RT
 		'make',
@@ -49,10 +44,6 @@ node default {
 
 	package { $packageLove:
 		ensure => 'latest',
-	}
-
-	package { $packageHate:
-		ensure => 'purged',
 	}
 
 	service { 'nginx':
