@@ -5,6 +5,7 @@ node default {
 		'perl-local-lib',
 		'perl-autodie',
 		'perl-boolean',
+		'perl-YAML',
 
 		'perl-Apache-Session',
 		'perl-Cache-Cache',
