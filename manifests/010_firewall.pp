@@ -1,4 +1,12 @@
 node default {
+	# Fix annoying deprecated warning
+	if versioncmp($::puppetversion,'3.6.1') >= 0 {
+		$allow_virtual_packages = hiera('allow_virtual_packages',false)
+		Package {
+			allow_virtual => $allow_virtual_packages,
+		}
+	}
+
 	case $::rt_setup_firewall {
 		'yes', '1', 'true': {
 
