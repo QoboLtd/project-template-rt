@@ -15,6 +15,22 @@ We are using the following components:
 * Librarian-puppet, for puppet module management
 * Request Tracker 4.2
 
+Install
+-------
+
+1. Login as root user to a freshly baked CentOS 7 machine.
+2. Disable SELinux: ```sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux```
+3. Reboot: ```reboot```
+4. Login as root user again.
+5. Install git with: ```yum install git```.
+6. Clone project repository: ```git clone https://github.com/QoboLtd/project-template-rt.git```
+7. Enter project directory: ```cd project-template-rt```
+8. Create configuration from example: ```cp .env.example .evn```
+9. Review and edit configuration: ```vi .env```
+10. Run the installer script: ```./sys_update.sh```
+11. Navigate to RT web interface: ```links http://$HOSTNAME```
+12. Login with default credentials (username=root, password=password).
+
 Usage
 -----
 
