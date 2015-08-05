@@ -170,6 +170,7 @@ node default {
 			}
 
 			$rt_dependencies_present = [
+				'Starlet::Server',
 				'Plack::Handler::Starlet',
 			]
 
@@ -199,7 +200,6 @@ node default {
 				'Module::Util',
 				'Net::SSL',
 				'PerlIO::eol',
-				'Starlet::Server',
 				'Regexp::Common::net::CIDR',
 				'Role::Basic',
 				'Server::Starter',
