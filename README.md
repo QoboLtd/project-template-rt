@@ -28,6 +28,8 @@ Install
 8. Create configuration from example: ```cp .env.example .evn```
 9. Review and edit configuration: ```vi .env```
 10. Run the installer script: ```./sys_update.sh```
+11. Navigate to RT web interface: ```links http://$HOSTNAME```
+12. Login with default credentials (username=root, password=password).
 
 Usage
 -----
