@@ -1,8 +1,6 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
-    ghoneycutt-selinux (1.1.0)
-      puppetlabs-stdlib (>= 3.2.0)
     nanliu-staging (1.0.3)
     puppetlabs-firewall (1.4.0)
     puppetlabs-mysql (3.3.0)
@@ -19,7 +17,6 @@ GIT
     meltwater-cpan (1.0.0)
 
 DEPENDENCIES
-  ghoneycutt-selinux (>= 0)
   meltwater-cpan (>= 0)
   puppetlabs-firewall (>= 0)
   puppetlabs-mysql (>= 0)

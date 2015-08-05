@@ -28,6 +28,5 @@ forge "https://forgeapi.puppetlabs.com"
 mod 'puppetlabs-firewall'
 mod 'puppetlabs-vcsrepo'
 mod 'puppetlabs-mysql'
-mod 'ghoneycutt-selinux'
 mod 'meltwater-cpan',
 	:git => "https://github.com/meltwater/puppet-cpan"
