@@ -162,7 +162,11 @@ node default {
 				require => User[$::rt_user],
 			}
 
-			$rt_dependencies = [
+			$rt_dependencies_present = [
+				'Plack::Handler::Starlet',
+			]
+
+			$rt_dependencies_latest = [
 				'GD::Graph',
 				'CGI::Cookie',
 				'CGI::PSGI',
@@ -188,7 +192,6 @@ node default {
 				'Module::Util',
 				'Net::SSL',
 				'PerlIO::eol',
-				'Plack::Handler::Starlet',
 				'Starlet::Server',
 				'Regexp::Common::net::CIDR',
 				'Role::Basic',
@@ -201,7 +204,7 @@ node default {
 				'Tree::Simple',
 			]
 
-			cpan { $rt_dependencies: 
+			cpan { $rt_dependencies_latest: 
 				ensure => latest,
 				local_lib => $::rt_local_cpan,
 				require => [ 
@@ -209,6 +212,16 @@ node default {
 					File[$::rt_local_cpan],
 				],
 			}
+
+			cpan { $rt_dependencies_present: 
+				ensure => present,
+				local_lib => $::rt_local_cpan,
+				require => [ 
+					Package["gcc"], 
+					File[$::rt_local_cpan],
+				],
+			}
+
 		}
 		default: {
 			notice("Skipping CPAN modules setup due to .env settings")
